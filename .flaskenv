@@ -1,0 +1,2 @@
+FLASK_APP=gdl.py
+FLASK_DEBUG=True

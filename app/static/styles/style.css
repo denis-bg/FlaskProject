@@ -1,0 +1,41 @@
+body {
+  background-color: #fefbd8;
+}
+
+.ltt-color {
+  width: 24;
+  height:auto;
+}
+
+.ltt-card {
+  background-color: #ACACAC;
+}
+
+.ltt-input {
+max-width: 80px;
+}
+
+.ltt-form-ps {
+/*background-color: #ACACAC;*/
+max-width: 500px;
+}
+
+.btn-black {
+  background-color: #000000;
+  color:#000000;
+  border-color: #000000;
+}
+
+/*
+h1 {
+  background-color: #80ced6;
+}
+
+div {
+  background-color: #d5f4e6;
+}
+
+span {
+  background-color: #f18973;
+}
+*/

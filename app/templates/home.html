@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<h1>Configurateur pour Découpe / Gravure Laser LTT </h1>
+<hr>
+
+<div class="container">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-body" style="max-width: 700px;">
+                <h1 class="card-title">Card title</h1>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Nouveau fichier</a>
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Charger fichier</a>
+            </div>
+        </div>
+
+
+
+        <!--form>
+       <div class="card">
+            <div class="card-body" style="max-width: 700px;">
+            <div class="form-row align-items-center ltt-form-ps">
+                <div class=col">
+                    <image src="{{ url_for('static', filename='images/black.png') }}" class="ltt-color">
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Puissance">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Vitesse">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="PPI">
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-row align-items-center ltt-form-ps">
+                <div class=col">
+                    <image src="{{ url_for('static', filename='images/red.png') }}" class="ltt-color">
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Puissance">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Vitesse">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="PPI">
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-row align-items-center ltt-form-ps">
+                <div class=col">
+                    <image src="{{ url_for('static', filename='images/green.png') }}" class="ltt-color">
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Puissance">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="Vitesse">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control ltt-input" placeholder="PPI">
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+            </div>
+
+        </form-->
+
+
+    </div>
+</div>
+{% endblock %}
+
