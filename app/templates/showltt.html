@@ -64,9 +64,8 @@
     <div class="form-group">
         <img src="{{ url_for('static', filename='images/ltt-circle-color0.png') }}" class="ltt-color">
     </div>
-    {{ render_field(power_0) }}
     <div class="form-group">
-        <input type="text" id="power_0" name="power_0" class="form-control form-control-sm ltt-input" placeholder="PUiss.">
+        <input type="text" id="power_0" value={{ power_0 }} name="power_0" class="form-control form-control-sm ltt-input" placeholder="PUiss.">
     </div>
     <div class="form-group">
         <input type="text" id="speed_0" class="form-control form-control-sm ltt-input" placeholder="Vitesse">

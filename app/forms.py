@@ -1,9 +1,21 @@
 from flask_wtf import FlaskForm
-from wtforms import DecimalField, StringField
+from wtforms import DecimalField, StringField, FieldList, FormField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 
 
+class ColorInfo(FlaskForm):
+    power = StringField()
+    speed = StringField()
+    ppi = StringField()
+    offset = StringField()
+    focus = StringField()
+
+
 class LTTForm(FlaskForm):
+    colorinfos = FieldList(FormField(ColorInfo), min_entries=8, max_entries=8)
+
+
+class NOKLTTForm(FlaskForm):
     power_0 = StringField()
     speed_0 = StringField()
     ppi_0 = StringField()
