@@ -9,6 +9,7 @@ body {
 
 .ltt-card {
   background-color: gainsboro;
+  color: darkslategrey;
 }
 
 .ltt-input {
@@ -17,7 +18,7 @@ margin: 5px;
 }
 
 .ltt-form-ps {
-/*background-color: #ACACAC;*/
+/*background-color: #ffffff;*/
 /*max-width: 500px;*/
 }
 

@@ -1,10 +1,7 @@
 {% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
 {% block title %}Home Page{% endblock %}
 {% block content %}
 
-{% from "_formhelpers.html" import render_field %}
 <div class="container col-10">
     <br>
     <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">
@@ -18,8 +15,9 @@
                 <article class="card-body">
                     <!--h4 class="card-title text-center mb-4 mt-1">Puissances et Vitesses</h4>
                     <hr-->
-                    <form method="POST" action="/showltt">
+                    <form>
                         <div class="card-body" style="max-width: auto;">
+                            <!-- Première ligne -->
                             <div class="form-row align-items-center ltt-form-ps">
                                 <div class="form-group">
                                     <img src="{{ url_for('static', filename='images/ltt-transp.png') }}"
@@ -59,29 +57,11 @@
                                 </div>
                             </div>
 
-<div class="form-row align-items-center ltt-form-ps">
 
-    <div class="form-group">
-        <img src="{{ url_for('static', filename='images/ltt-circle-color0.png') }}" class="ltt-color">
-    </div>
-    {{ render_field(power_0) }}
-    <div class="form-group">
-        <input type="text" id="power_0" name="power_0" class="form-control form-control-sm ltt-input" placeholder="PUiss.">
-    </div>
-    <div class="form-group">
-        <input type="text" id="speed_0" class="form-control form-control-sm ltt-input" placeholder="Vitesse">
-    </div>
-    <div class="form-group">
-        <input type="text" id="focus_0" class="form-control form-control-sm ltt-input" placeholder="Vitesse">
-    </div>
-                            </div>
-                            {#
-                            {% for i in range(4) %}
+                            {% for i in range(8) %}
                             {% include '_puissvit.html' %}
                             {% endfor %}
-                            #}
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Login">
                     </form>
                 </article>
             </div>

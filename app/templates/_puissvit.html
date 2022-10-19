@@ -1,23 +1,29 @@
-{% set file_name = "images/ltt-color%d.png" % i %}
+{% set file_name = "images/ltt-circle-color%d.png" % i %}
+{% set power = "power_%d" % i %}
+{% set speed = "speed_%d" % i %}
+{% set ppi = "ppi_%d" % i %}
+{% set offset = "offset_%d" % i %}
+{% set focus = "focus_%d" % i %}
+
 <div class="form-row align-items-center ltt-form-ps">
+
     <div class="form-group">
         <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color">
     </div>
-
     <div class="form-group">
-        <input type="text" class="form-control form-control-xs ltt-input" placeholder="Puiss.">
+        <input type="text" id="{{ power }}" name="{{ power }}" class="form-control form-control-sm ltt-input" placeholder="PUiss.">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control form-control-xs ltt-input" placeholder="Vitesse">
+        <input type="text" id="{{ speed }}" class="form-control form-control-sm ltt-input" placeholder="Vitesse">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control form-control-sm ltt-input" placeholder="PPI">
+        <input type="text" id="{{ ppi }}" class="form-control form-control-sm ltt-input" placeholder="PPI">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control form-control-sm ltt-input" placeholder="Offset">
+        <input type="text" id="{{ offset }}" class="form-control form-control-sm ltt-input" placeholder="Offset">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control form-control-sm ltt-input" placeholder="Focus">
+        <input type="text" id="{{ focus }}" class="form-control form-control-sm ltt-input" placeholder="Focus">
     </div>
 
     <div class="form-group">
