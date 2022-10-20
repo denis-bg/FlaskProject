@@ -12,9 +12,9 @@
 {% endmacro %}
 
 {% macro render_input(field) %}
-<div class="form-group">
+<div class="form-group db-group">
     <!--div class="col-lg-10"-->
-        {{ field(class_='form-control', **kwargs)|safe }}
+        {{ field(class='form-control', **kwargs)|safe }}
         <ul>
         {% for error in field.errors %}
             <li style="color:red;">{{ error }}</li>

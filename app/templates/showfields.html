@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}Home Page{% endblock %}
+{% from "_formhelpers.html" import render_input %}
+{% block title %}SHOW FIELDS{% endblock %}
 {% block content %}
-
-{% from "_formhelpers.html" import render_field %}
+{#% set file_name = "images/ltt-circle-color%d.png" % i %#}
 <div class="container col-10">
     <br>
     <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">
@@ -19,6 +18,7 @@
                     <!--h4 class="card-title text-center mb-4 mt-1">Puissances et Vitesses</h4>
                     <hr-->
                     <form method="POST" action="/showltt">
+
                         <div class="card-body" style="max-width: auto;">
                             <div class="form-row align-items-center ltt-form-ps">
                                 <div class="form-group">
@@ -59,11 +59,20 @@
                                 </div>
                             </div>
 
-                            {% for i in range(4) %}
-                            {% include '_puissvit.html' %}
+
+                            {% for ci in form.colorinfos %}
+                                {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+                                <div class="form-row align-items-center ltt-form-ps">
+                                    <div class="form-group">
+                                        <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color">
+                                    </div>
+                                    {% for sf in ci %}
+                                        {{ wtf.form_field(sf, form_type="inline",
+                                            class="form-control form-control-sm ltt-input") }}
+                                    {% endfor %}
+                                </div>
                             {% endfor %}
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Login">
+                            <input class="btn btn-primary" type="submit" value="Login">
                     </form>
                 </article>
             </div>
@@ -107,4 +116,14 @@
     </div> <!-- row.// -->
 </div>
 
+
+<!--form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <br />
+    {% for ci in form.colorinfos %}
+        {{ ci.label }}{{ ci }}
+    {% endfor %}
+    <button>Submit</button>
+</form-->
 {% endblock %}
+

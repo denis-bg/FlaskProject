@@ -21,22 +21,18 @@ def showltt():
     colorinfo = namedtuple('ColorInfo', ['power', 'speed', 'ppi', 'offset', 'focus'])
     data = {
         'colorinfos' : [
-            colorinfo('10', '90', '500', '0', '0')
-            colorinfo('20', '80', '500', '0', '0')
-            colorinfo('30', '70', '500', '0', '0')
-            colorinfo('40', '60', '500', '0', '0')
-            colorinfo('50', '50', '500', '0', '0')
-            colorinfo('60', '40', '500', '0', '0')
-            colorinfo('70', '30', '500', '0', '0')
-            colorinfo('80', '20', '500', '0', '0')
+            colorinfo(10.4, 90, '500', '0', '0'),
+            colorinfo(100, 90.3, '500', '0', '0'),
+            colorinfo(18.4, 37.2, '500', '0', '0'),
+            colorinfo(65, 69, '500', '0', '0'),
         ]
     }
-    form = LTTForm()
+    form = LTTForm(data=data)
     if form.validate_on_submit():
         return 'Ok'
     # form.process()
 
-    return render_template('showltt.html', form=form)
+    return render_template('showfields.html', form=form)
 
 
 
