@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}Home Page{% endblock %}
+{% block title %}SHOW FIELDS{% endblock %}
 {% block content %}
-
-{% from "_formhelpers.html" import render_field %}
+{#% set file_name = "images/ltt-circle-color%d.png" % i %#}
 <div class="container col-10">
     <br>
-    <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">
+    <p class="text-center" id="montexte">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">
         Bootstrap-ecommerce.com</a></p>
     <hr>
     <div class="row" style="margin-left:auto; margin-right:auto">
@@ -16,9 +14,11 @@
         <aside>
             <div class="card ltt-card">
                 <article class="card-body">
-                    <!--h4 class="card-title text-center mb-4 mt-1">Puissances et Vitesses</h4>
-                    <hr-->
+                    <h4 class="card-title text-center mb-4 mt-1">Puissances et Vitesses</h4>
+                    <hr>
+                    <!--input type = "button" onclick = "MyFunc()" value = "Say Hello" /-->
                     <form method="POST" action="/showltt">
+
                         <div class="card-body" style="max-width: auto;">
                             <div class="form-row align-items-center ltt-form-ps">
                                 <div class="form-group">
@@ -26,44 +26,88 @@
                                          class="ltt-color">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm ltt-input invisible">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Puiss.">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm ltt-input invisible">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Vitesse">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm ltt-input invisible">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="PPI">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm ltt-input invisible">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Offset">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm ltt-input invisible">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Focus">
                                 </div>
 
                                 <div class="form-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="chk1"
-                                               id="inlineCheckbox1">
+                                        <div class="checkbox">
+                                            <label for="chk-gravure">
+                                                <input type="checkbox" id="chk-gravure" onclick="MyFunc('gravure')"> G
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="chk2"
-                                               id="inlineCheckbox1">
+                                        <div class="checkbox">
+                                            <label for="chk-decoupe">
+                                                <input type="checkbox" id="chk-decoupe" onclick="MyFunc('decoupe')"> D
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="chk2"
-                                               id="inlineCheckbox1">
-                                        &nbsp;<span class="fas fa-solid fa-question" data-toggle="tooltip"
-                                                    data-placement="top" title="Tooltip on top"></span>
+                                        <div class="checkbox">
+                                            <label for="chk-airblow">
+                                                <input type="checkbox" id="chk-airblow" onclick="MyFunc('airblow')"> A
+                                            </label>
+                                            <span class="fas fa-solid fa-question" data-html="true"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="G: Gravure<br>D: Découpe<br>A: Airblow"></span>
+                                        </div>
                                     </div>
+
+
                                 </div>
                             </div>
 
-                            {% for i in range(4) %}
-                            {% include '_puissvit.html' %}
+
+                            {% for ci in form.colorinfos %}
+                            {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+                            <div class="form-row align-items-center ltt-form-ps">
+                                <div class="form-group">
+                                    <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color">
+                                </div>
+                                {{ wtf.form_field(ci.power, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.speed, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.ppi, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.offset, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.focus, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                <div class="form-group">
+
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.gravure, form_type="inline",class="form-check-input
+                                        chk-gravure") }}
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.decoupe, form_type="inline",class="form-check-input
+                                        chk-decoupe") }}
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.airblow, form_type="inline",class="form-check-input
+                                        chk-airblow") }}
+
+                                    </div>
+                                </div>
+                            </div>
                             {% endfor %}
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Login">
+                            <input class="btn btn-primary" type="submit" value="Enregistrer les modifications">
                     </form>
                 </article>
             </div>
@@ -96,7 +140,7 @@
                             </div> <!-- input-group.// -->
                         </div> <!-- form-group// -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block"> Login</button>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
                         </div> <!-- form-group// -->
                         <p class="text-center"><a href="#" class="btn">Forgot password?</a></p>
                     </form>
@@ -106,5 +150,5 @@
 
     </div> <!-- row.// -->
 </div>
-
 {% endblock %}
+
