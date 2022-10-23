@@ -5,12 +5,12 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <div class="card mt-3 tab-card">
+    <div class="col-8">
+      <div class="card mb-4 tab-card">
         <div class="card-header tab-card-header">
           <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">One</a>
+                <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="false">One</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Two</a>
@@ -18,11 +18,14 @@
             <li class="nav-item">
                 <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Three</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls=Four" aria-selected="true">Four</a>
+            </li>
           </ul>
         </div>
 
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+          <div class="tab-pane fade p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
             <h5 class="card-title">Tab Card One</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -37,6 +40,151 @@
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
+
+          <div class="tab-pane fade show active p-4" id="four" role="tabpanel" aria-labelledby="four-tab">
+            <div class="card ltt-card">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Puissances et Vitesses</h4>
+                    <hr>
+                    <!--input type = "button" onclick = "MyFunc()" value = "Say Hello" /-->
+                    <form method="POST" action="/showltt">
+
+                        <div class="card-body" style="max-width: auto;">
+                            <div class="form-row align-items-center ltt-form-ps">
+                                <div class="form-group">
+                                    <img src="{{ url_for('static', filename='images/ltt-transp.png') }}"
+                                         class="ltt-color">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Puiss.">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Vitesse">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="PPI">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Offset">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm ltt-input disabled" style="background-color:gainsboro;" placeholder="Focus">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                        <div class="checkbox">
+                                            <label for="chk-gravure">
+                                                <input type="checkbox" id="chk-gravure" onclick="MyFunc('gravure')"> G
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <div class="checkbox">
+                                            <label for="chk-decoupe">
+                                                <input type="checkbox" id="chk-decoupe" onclick="MyFunc('decoupe')"> D
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <div class="checkbox">
+                                            <label for="chk-airblow">
+                                                <input type="checkbox" id="chk-airblow" onclick="MyFunc('airblow')"> A
+                                            </label>
+                                            <span class="fas fa-solid fa-question" data-html="true"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="G: Gravure<br>D: Découpe<br>A: Airblow"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            {% for ci in form.colorinfos %}
+                            {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+                            <div class="form-row align-items-center ltt-form-ps">
+                                <div class="form-group">
+                                    <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color">
+                                </div>
+                                {{ wtf.form_field(ci.power, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.speed, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.ppi, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.offset, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                {{ wtf.form_field(ci.focus, form_type="inline",class="form-control form-control-sm
+                                ltt-input") }}
+                                <div class="form-group">
+
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.gravure, form_type="inline",class="form-check-input
+                                        chk-gravure") }}
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.decoupe, form_type="inline",class="form-check-input
+                                        chk-decoupe") }}
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        {{ wtf.form_field(ci.airblow, form_type="inline",class="form-check-input
+                                        chk-airblow") }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+<div class="form-row ltt-form-ps alig-items-center">
+             <div class="form-group col-md-3">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Découpe">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Gravure">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Airblow">
+             </div>
+             <div class="form-group col-md-3">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Découpe">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Gravure">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Airblow">
+             </div>
+</div>
+
+                            <div class="form-row ltt-form-ps align-items-center">
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;"><!-- placeholder="Découpe"-->
+                                </div>
+                               {% for ci in form.colorinfos %}
+                                {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+                                 <div class="form-group col-xs">
+                                    <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color-sm">
+                                </div>
+                               {% endfor %}
+                            </div>
+
+                            <div class="form-row ltt-form-ps align-items-center">
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control form-control-md ltt-input-2 disabled" style="background-color:gainsboro;" placeholder="Gravure">
+                                </div>
+                               {% for ci in form.colorinfos %}
+                                {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+                                    <div class="form-check">
+                                        {{ wtf.form_field(ci.gravure, form_type="inline",class="form-check-input
+                                        chk-gravure") }}
+                                    </div>
+                               {% endfor %}
+                            </div>
+
+
+
+                            <input class="btn btn-primary" type="submit" value="Enregistrer les modifications">
+                    </form>
+                </article>
+            </div>
+          </div>
+
 
         </div>
       </div>

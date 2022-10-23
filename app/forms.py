@@ -15,7 +15,7 @@ class ColorInfo(FlaskForm):
     ppi = StringField()
     offset = StringField()
     focus = StringField()
-    gravure = BooleanField(label="G")
+    gravure = BooleanField(label="")
     decoupe = BooleanField(label="D")
     airblow = BooleanField(label="A")
 

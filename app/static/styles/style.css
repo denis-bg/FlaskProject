@@ -6,6 +6,12 @@ body {
   width: 24;
   height:auto;
 }
+
+.ltt-color-sm {
+  width: 12;
+  height:auto;
+}
+
 .db-group {
 }
 
@@ -16,6 +22,11 @@ body {
 
 .ltt-input {
 max-width: 65px;
+margin: 5px;
+}
+
+.ltt-input-2 {
+max-width: 100px;
 margin: 5px;
 }
 
