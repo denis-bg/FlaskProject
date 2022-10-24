@@ -1,4 +1,5 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, Form
+
 from wtforms import DecimalField, StringField, FieldList, FormField, BooleanField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 
@@ -9,13 +10,13 @@ class GDAInfo(FlaskForm):
     airblow = BooleanField(label="")
 
 
-class ColorInfo(FlaskForm):
+class ColorInfo(Form):
     power = StringField(render_kw={"placeholder": "Puiss."})
     speed = StringField(render_kw={"placeholder": "Vit."})
     ppi = StringField()
     offset = StringField()
     focus = StringField()
-    gravure = BooleanField(label="")
+    gravure = BooleanField(label="G")
     decoupe = BooleanField(label="D")
     airblow = BooleanField(label="A")
 

@@ -2,17 +2,14 @@ body {
   background-color: #fefbd8;
 }
 
-.ltt-color {
+.ltt-color { /* Les 8 couleurs du drivers en grand */
   width: 24;
   height:auto;
 }
 
-.ltt-color-sm {
+.ltt-color-sm { /* Les 8 couleurs du drivers en petit */
   width: 12;
   height:auto;
-}
-
-.db-group {
 }
 
 .ltt-card {
@@ -21,7 +18,7 @@ body {
 }
 
 .ltt-input {
-max-width: 65px;
+max-width: 60px;
 margin: 5px;
 }
 
@@ -32,7 +29,7 @@ margin: 5px;
 
 .ltt-form-ps {
 /*background-color: #ffffff;*/
-/*max-width: 500px;*/
+max-width: 550px;
 }
 
 .btn-black {

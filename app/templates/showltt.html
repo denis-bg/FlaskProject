@@ -18,6 +18,10 @@
                     <hr>
                     <!--input type = "button" onclick = "MyFunc()" value = "Say Hello" /-->
                     <form method="POST" action="/showltt">
+{{ form.csrf_token }}
+    {% if form.errors %}
+    {{ form.errors }}
+    {% endif %}
 
                         <div class="card-body" style="max-width: auto;">
                             <div class="form-row align-items-center ltt-form-ps">

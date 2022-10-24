@@ -1,19 +1,13 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from app import app
 from app.forms import LTTForm
 from collections import namedtuple
 
 
-@app.route('/nokshowltt', methods=['GET', 'POST'])
-def nonshowltt():
-    form = LTTForm()
-    form.power_0.default = "54"
-    form.speed_0.default = "85"
-    if form.validate_on_submit():
-        return 'Ok'
-    # form.process()
-
-    return render_template('showltt.html', form=form)
+@app.route('/testfile')
+def showfile():
+    return send_from_directory('public/lttfiles', "DEFAULT-LTT.LCF")
+    # print(f.read())
 
 
 @app.route('/showltt', methods=['GET', 'POST'])
@@ -29,9 +23,13 @@ def showltt():
     }
     form = LTTForm(data=data)
     if form.validate_on_submit():
-        return 'Ok'
-    # form.process()
+        print('debut')
+        for ci in form.colorinfos:
+            print(ci.power.data)
+        print('fin')
 
+    # form.process()
+    print(form.errors)
     return render_template('testpane.html', form=form)
     # return render_template('showltt.html', form=form)
 
