@@ -11,8 +11,9 @@ class GDAInfo(FlaskForm):
 
 
 class ColorInfo(Form):
-    power = StringField(render_kw={"placeholder": "Puiss."})
-    speed = StringField(render_kw={"placeholder": "Vit."})
+    # power = StringField(render_kw={"placeholder": "Puiss."})
+    power = StringField()
+    speed = StringField()
     ppi = StringField()
     offset = StringField()
     focus = StringField()
@@ -23,6 +24,9 @@ class ColorInfo(Form):
 
 class LTTForm(FlaskForm):
     colorinfos = FieldList(FormField(ColorInfo), min_entries=8, max_entries=8)
+    chkgravure = BooleanField(label="G")
+    chkdecoupe = BooleanField(label="D")
+    chkairblow = BooleanField(label="A")
 
 
 
