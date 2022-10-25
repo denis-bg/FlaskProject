@@ -49,17 +49,22 @@ def showdir():
     return a
 
 
-@app.route('/newfile')
+@app.route('/newfile', methods=['GET', 'POST'])
 def newfile():
     data = populateLTTForm('DEFAULT-LTT.LCF')
     # data = populateLTTForm('text.txt')
 
     form = LTTForm(data=data)
     if form.validate_on_submit():
+        # enregistrement du fichier
+        flash('Fichier enregistré', 'danger')
+        return render_template('testpane.html', form=form)
+        '''
         print('debut')
         for ci in form.colorinfos:
             print(ci.power.data)
         print('fin')
+        '''
 
     # form.process()
     print(form.errors)

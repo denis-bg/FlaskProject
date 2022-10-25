@@ -1,0 +1,57 @@
+<div class="card-body">
+    <!--div class="form-row align-items-center"--><!-- ltt-form-ps"-->
+        <div class="form-row ltt-form-ps align-items-center">
+            <div class="form-group col-md-2">
+                <div style="padding: 0;" class="invisible">Gravure</div>
+                <div style="padding: 0;">Gravure</div>
+                <div style="padding: 0;">Découpe</div>
+                <div style="padding: 0;">Airblow</div>
+            </div>
+
+            <div class="form-group col-md-1">
+                <div class="form-group d-flex justify-content-center" style="padding:5;">
+                    <img src="{{ url_for('static', filename='images/ltt-transp.png') }}" class="ltt-color-sm">
+                </div>
+                <div class="form-check form-check-inline">
+                <!--div class="d-flex justify-content-center" style="padding:0;"-->
+                    {{ wtf.form_field(form.chkgravure, class="form-check-input") }}
+                </div>
+                <div class="form-check form-check-inline">
+                <!--div class="d-flex justify-content-center" style="padding:0;"-->
+                    {{ wtf.form_field(form.chkdecoupe, class="form-check-input") }}
+                </div>
+                <div class="form-check form-check-inline">
+                <!--div class="d-flex justify-content-center" style="padding:0;"-->
+                    {{ wtf.form_field(form.chkairblow, class="form-check-input") }}
+                </div>
+            </div>
+
+            {% for ci in form.colorinfos %}
+            {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
+            <div class="form-group col-md-1">
+                <div class="form-group d-flex justify-content-center" style="padding:5;">
+                    <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color-sm">
+                </div>
+                <div class="d-flex justify-content-center" style="padding:0;">
+                    {{ wtf.form_field(ci.gravure, class="form-check-input") }}
+                </div>
+                <div class="d-flex justify-content-center" style="padding:0;">
+                    {{ wtf.form_field(ci.decoupe, class="form-check-input") }}
+                </div>
+                <div class="d-flex justify-content-center" style="padding:0;">
+                    {{ wtf.form_field(ci.airblow, class="form-check-input") }}
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="form-group col-md-2">
+                <div style="padding: 0;" class="invisible">Gravure</div>
+                <div style="padding: 0;">Gravure</div>
+                <div style="padding: 0;">Découpe</div>
+                <div style="padding: 0;">Airblow</div>
+            </div>
+
+
+        </div>
+    <!--/div-->
+</div>

@@ -17,16 +17,16 @@ class ColorInfo(Form):
     ppi = StringField()
     offset = StringField()
     focus = StringField()
-    gravure = BooleanField(label="G")
-    decoupe = BooleanField(label="D")
-    airblow = BooleanField(label="A")
+    gravure = BooleanField(label="")
+    decoupe = BooleanField(label="")
+    airblow = BooleanField(label="")
 
 
 class LTTForm(FlaskForm):
     colorinfos = FieldList(FormField(ColorInfo), min_entries=8, max_entries=8)
-    chkgravure = BooleanField(label="G")
-    chkdecoupe = BooleanField(label="D")
-    chkairblow = BooleanField(label="A")
+    chkgravure = BooleanField(label="")
+    chkdecoupe = BooleanField(label="")
+    chkairblow = BooleanField(label="")
 
 
 
