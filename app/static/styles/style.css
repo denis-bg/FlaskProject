@@ -18,7 +18,7 @@ body {
 }
 
 .ltt-input {
-max-width: 60px;
+max-width: 100px;
 margin: 5px;
 }
 
@@ -29,7 +29,11 @@ margin: 5px;
 
 .ltt-form-ps {
 /*background-color: #ffffff;*/
-max-width: 550px;
+max-width: auto;
+}
+
+.ltt-form-ps-blue {
+background-color: #0000ff;
 }
 
 .btn-black {
