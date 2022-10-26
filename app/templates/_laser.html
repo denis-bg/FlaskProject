@@ -5,14 +5,17 @@
                  class="ltt-color">
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
-            <input type="text" placeholder="Puissance"
-                   class="form-control form-control-sm ltt-laser-input"
-                   data-toggle="tooltip" data-placement="top" title="Aide sur Puissance">
+            <input type="text" id="power" placeholder="Puissance"
+                   class="form-control form-control-sm ltt-laser-input" onblur = "TousLesMemes(this);"
+                   data-toggle="tooltip" data-placement="top" data-html=true
+                   title="Puissance fixe pour toutes les couleurs<br>Vitesse variable">
 
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
-            <input type="text"  placeholder="Vitesse"
-                   class="form-control form-control-sm ltt-laser-input">
+            <input type="text" id="speed" placeholder="Vitesse" onblur = "TousLesMemes(this);"
+                   class="form-control form-control-sm ltt-laser-input"
+                   data-toggle="tooltip" data-placement="top" data-html=true
+                   title="Vitesse fixe pour toutes les couleurs<br>Puissance variable">
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
             <input type="text" placeholder="PPI"
@@ -40,6 +43,9 @@
             {{ wtf.form_field(ci.power, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
+            {#% for error in ci.power.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %#}
         </div>
         <div class="col">
             {{ wtf.form_field(ci.speed, form_type="inline",class="form-control

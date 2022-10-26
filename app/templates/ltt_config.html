@@ -16,7 +16,7 @@
   {% endif %}
 {% endwith %#}
 
-<form method="POST" action="" novalidate>
+<form method="POST" action="" novalidate onkeydown="return event.key != 'Enter';">
 {{ form.csrf_token }}
     {% if form.errors %}
     {{ form.errors }}
@@ -25,20 +25,14 @@
 <div class="container ltt-col1">
 
    <div class="row">
-        <div class="col-4">
+        <div class="col-5">
             <div class="container">
-                <h3>Help !</h3>
-                <hr>
-                <p> Ceci est une ligne d'aide</p>
-                <p> Ceci est une ligne d'aide</p>
-                <p> Ceci est une ligne d'aide</p>
-                <p> Ceci est une ligne d'aide</p>
-                <p> Ceci est une ligne d'aide</p>
-                <p> Ceci est une ligne d'aide</p>
+                <div id="help-content"></div>
             </div>
         </div>
-        <div class="col-8">
-            <div class="card ltt-card mb-8 tab-card">
+
+        <div class="col-7">
+            <div class="card ltt-card mb- tab-card">
             {% with messages = get_flashed_messages(with_categories=true) %}
               <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
               {% if messages %}

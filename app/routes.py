@@ -56,7 +56,7 @@ def newfile():
 
     form = LTTForm(data=data)
     if form.validate_on_submit():
-        # enregistrement du fichier
+        # A FAIRE : enregistrement du fichier
         flash('Fichier enregistré', 'danger')
         return render_template('testpane.html', form=form)
         '''
@@ -66,9 +66,8 @@ def newfile():
         print('fin')
         '''
 
-    # form.process()
     print(form.errors)
-    return render_template('testpane.html', form=form)
+    return render_template('ltt_config.html', form=form)
 
 
 @app.route('/wfile')
@@ -102,8 +101,8 @@ def showltt():
 
     # form.process()
     print(form.errors)
-    return render_template('testpane.html', form=form)
-    # return render_template('showltt.html', form=form)
+    # return render_template('testpane.html', form=form)
+    return render_template('ltt_config.html', form=form)
 
 
 

@@ -6,45 +6,87 @@ function TestAlert() {
     alert('Ok !')
 }
 
+$('#laser-tab').on('shown.bs.tab', function () { InitJS_Laser();  });
+function InitJS_Laser() {
+    loadHTML("help-content", "help-laser.html");
+}
+
+$('#travail-tab').on('shown.bs.tab', function () { InitJS_Travail();  });
 function InitJS_Travail() {
-//alert("Show travail tab")
     if($('#chkgravure').length > 0) chkgravure.onclick = function() { Toggle_flag('gravure'); };
     if($('#chkdecoupe').length > 0) chkdecoupe.onclick = function() { Toggle_flag('decoupe'); };
     if($('#chkairblow').length > 0) chkairblow.onclick = function() { Toggle_flag('airblow'); };
+
+    loadHTML("help-content", "help-travail.html");
 }
 
-//$('#travail-tab').on('shown.bs.tab', function () { InitJS_Travail();  });
+$('#page-tab').on('shown.bs.tab', function () { InitJS_Page();  });
+function InitJS_Page() {
+    loadHTML("help-content", "help-page.html");
+}
+
+$('#puissance-tab').on('shown.bs.tab', function () { InitJS_Puissance();  });
+function InitJS_Puissance() {
+    loadHTML("help-content", "help-puissance.html");
+}
+
+function loadHTML(id, filename) {
+    //console.log(`div id: ${id}, filename: ${filename}`);
+    element = document.getElementById(id);
+    file = "static/helpfiles/"+filename;
+    if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        //alert(filename);
+        if (this.readyState == 4) {
+          if (this.status == 200) element.innerHTML = this.responseText;
+          if (this.status == 404) loadHTML("help-content", "help-404.html");
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      return;
+    }
+}
+
+
+/* $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  var target = $(e.target).attr("href") // activated tab
+  id = "help-content";
+  filename = 'help-'+target.substring(1)+".html"
+  loadHTML(id, filename)
+}); */
 
 function Toggle_flag(col) {
     new_state = document.getElementById("chk"+col).checked
-    //alert(col + " - " + new_state)
     for (let i = 0; i < 8; i++) {
        chk = "colorinfos-"+ i.toString() + "-" + col
-       //alert("avant" + " - " + chk + " - " + document.getElementById(chk).checked)
-
-       //document.getElementById(chk).checked = document.getElementById("chk"+col).checked
        document.getElementById(chk).checked = new_state
-       //alert("apres" + " - " + chk + " - " + document.getElementById(chk).checked)
     }
 }
 
-/*alert("Start!");*/
-if($('#chkgravure').length > 0) chkgravure.onclick = function() { Toggle_flag('gravure'); };
-if($('#chkdecoupe').length > 0) chkdecoupe.onclick = function() { Toggle_flag('decoupe'); };
-if($('#chkairblow').length > 0) chkairblow.onclick = function() { Toggle_flag('airblow'); };
+function TousLesMemes(e) {
+  //alert(e.id+'-'+e.value+'-')
+  f = e.id
+  //if (e.value != '') {
+    for (let i = 0; i < 8; i++) {
+       cf = "colorinfos-"+ i.toString() + "-" + f
+       if (e.value != '') {
+           document.getElementById(cf).value = e.value
+           document.getElementById(cf).disabled = true
+           if (f == 'power') document.getElementById('speed').disabled = true
+           else document.getElementById('power').disabled = true
+       }
+       else {
+           document.getElementById(cf).disabled = false
+           if (f == 'power') document.getElementById('speed').disabled = false
+           else document.getElementById('power').disabled = false
+       }
+    }
+  //}
+}
+
 
 $( document ).ready(function() {
-     //alert("This page has been loaded");
-/*    if($('#chkgravure').length > 0) chkgravure.onclick = function() { MyFunc('gravure'); };
-    if($('#chkdecoupe').length > 0) chkdecoupe.onclick = function() { MyFunc('decoupe'); };
-    if($('#chkairblow').length > 0) chkairblow.onclick = function() { MyFunc('airblow'); };*/
-
-      function yesno(chk, label) {
-      alert("Click!")
-        /*document.getElementById(label).innerHTML = chk.checked ? "Yes" : "No";*/
-    }
-
-
-/*$("checkbox").click(MyFunc);*/
-
+  loadHTML("help-content", "help-laser.html")
 });

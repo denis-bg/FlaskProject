@@ -12,11 +12,11 @@ class GDAInfo(FlaskForm):
 
 class ColorInfo(Form):
     # power = StringField(render_kw={"placeholder": "Puiss."})
-    power = StringField()
-    speed = StringField()
-    ppi = StringField()
-    offset = StringField()
-    focus = StringField()
+    power = StringField(validators=[DataRequired()])
+    speed = StringField(validators=[DataRequired()])
+    ppi = StringField(validators=[DataRequired()])
+    offset = StringField(validators=[DataRequired()])
+    focus = StringField(validators=[DataRequired()])
     gravure = BooleanField(label="")
     decoupe = BooleanField(label="")
     airblow = BooleanField(label="")
