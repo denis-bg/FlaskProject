@@ -2,6 +2,26 @@ body {
   background-color: #fefbd8;
 }
 
+.ltt-travail {
+    margin-bottom: 0px;
+}
+.ltt-col1 {
+  background-color: #f0efef;
+}
+
+.ltt-col2 {
+  background-color: #ddeedd;
+}
+
+.ltt-col3 {
+  background-color: #c2d4dd;
+}
+
+.ltt-col4 {
+  background-color: #b0aac0;
+}
+
+
 .ltt-color { /* Les 8 couleurs du drivers en grand */
   width: 24;
   height:auto;
@@ -13,19 +33,30 @@ body {
 }
 
 .ltt-card {
-  background-color: gainsboro;
+  background-color: white;
   color: darkslategrey;
 }
 
 .ltt-input {
-max-width: 100px;
+/*max-width: 100px;*/
 margin: 5px;
 }
 
-.ltt-input-2 {
+.ltt-travail-label, .ltt-laser-label  {
+outline: none;
 max-width: 100px;
+margin-top: 5px;
+/*margin-bottom: 0px;*/
+border:none;
+}
+
+.ltt-laser-input {
+/*max-width: 100px;*/
 margin: 5px;
 }
+
+
+input[type="text"]:disabled { background-color:#11ffee00; }
 
 .ltt-form-ps {
 /*background-color: #ffffff;*/

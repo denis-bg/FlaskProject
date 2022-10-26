@@ -1,37 +1,34 @@
-<div class="container">
+<div class="container ltt-col1">
     <div class="form-row ltt-form-ps align-items-center">
-        <div class="form-group col-md-1">
+        <div class="form-group col-md-1" style="margin-bottom: 0px;">
             <img src="{{ url_for('static', filename='images/ltt-transp.png') }}"
                  class="ltt-color">
         </div>
-        <div class="form-group col-md-2">
-            <input type="text"
-                   class="form-control form-control-sm ltt-input disabled"
-                   style="background-color:gainsboro;" placeholder="Puissance">
+        <div class="form-group col" style="margin-bottom: 0px;">
+            <input type="text" placeholder="Puissance"
+                   class="form-control form-control-sm ltt-laser-input"
+                   data-toggle="tooltip" data-placement="top" title="Aide sur Puissance">
+
         </div>
-        <div class="form-group col-md-2">
-            <input type="text"
-                   class="form-control form-control-sm ltt-input disabled"
-                   style="background-color:gainsboro;" placeholder="Vitesse">
+        <div class="form-group col" style="margin-bottom: 0px;">
+            <input type="text"  placeholder="Vitesse"
+                   class="form-control form-control-sm ltt-laser-input">
         </div>
-        <div class="form-group col-md-2">
-            <input type="text"
-                   class="form-control form-control-sm ltt-input disabled"
-                   style="background-color:gainsboro;" placeholder="PPI">
+        <div class="form-group col" style="margin-bottom: 0px;">
+            <input type="text" placeholder="PPI"
+                   class="form-control form-control-sm ltt-laser-label" disabled>
         </div>
-        <div class="form-group col-md-2">
-            <input type="text"
-                   class="form-control form-control-sm ltt-input disabled"
-                   style="background-color:gainsboro;" placeholder="Offset">
+        <div class="form-group col" style="margin-bottom: 0px;">
+            <input type="text" placeholder="Offset"
+                   class="form-control form-control-sm ltt-laser-label" disabled>
         </div>
-        <div class="form-group col-md-2">
-            <input type="text"
-                   class="form-control form-control-sm ltt-input disabled"
-                   style="background-color:gainsboro;" placeholder="Focus">
+        <div class="form-group col" style="margin-bottom: 0px;">
+            <input type="text" placeholder="Focus"
+                   class="form-control form-control-sm ltt-laser-label" disabled>
         </div>
     </div>
 
-
+    <hr style="margin:0px;">
     {% for ci in form.colorinfos %}
     {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
     <div class="form-row ltt-form-ps align-items-center">
@@ -39,27 +36,27 @@
             <img src="{{ url_for('static', filename=file_name) }}"
                  class="ltt-color">
         </div>
-        <div class="col-md-2">
+        <div class="col">
             {{ wtf.form_field(ci.power, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
         </div>
-        <div class="col-md-2">
+        <div class="col">
             {{ wtf.form_field(ci.speed, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
         </div>
-        <div class="col-md-2">
+        <div class="col">
             {{ wtf.form_field(ci.ppi, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
         </div>
-        <div class="col-md-2">
+        <div class="col">
             {{ wtf.form_field(ci.offset, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
         </div>
-        <div class="col-md-2">
+        <div class="col">
             {{ wtf.form_field(ci.focus, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}

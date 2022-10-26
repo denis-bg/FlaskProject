@@ -21,10 +21,22 @@
     {% if form.errors %}
     {{ form.errors }}
     {% endif %}
-<div class="container">
+    <hr>
+<div class="container ltt-col1">
 
    <div class="row">
-        <div class="col-2"></div>
+        <div class="col-4">
+            <div class="container">
+                <h3>Help !</h3>
+                <hr>
+                <p> Ceci est une ligne d'aide</p>
+                <p> Ceci est une ligne d'aide</p>
+                <p> Ceci est une ligne d'aide</p>
+                <p> Ceci est une ligne d'aide</p>
+                <p> Ceci est une ligne d'aide</p>
+                <p> Ceci est une ligne d'aide</p>
+            </div>
+        </div>
         <div class="col-8">
             <div class="card ltt-card mb-8 tab-card">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -69,7 +81,7 @@
                             {% include "_travail.html" %}
                         </div>
                         <div class="tab-pane fade p-3" id="page" role="tabpanel" aria-labelledby="page-tab">
-                            {#% include "_page.html" %#}
+                            {% include "_page.html" %}
                             <!--h5 class="card-title">Tab Card Three</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk
                                 of the card's content.</p>
@@ -82,7 +94,7 @@
                 <!--/form-->
             </div>
         </div>
-        <div class="col-2"></div>
+        <!--div class="col-2"></div-->
     </div>
 
     <div class="row">
