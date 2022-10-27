@@ -53,6 +53,45 @@
 
 <div class="container ltt-col1">
     <div class="row">
+        <div class="col col-md-4 ltt-col2" style="border: solid; border-width: 1px; border-color: slategray;">
+            Mode Travail
+            <div class="custom-control custom-radio">
+              <input type="radio" id="trv-mode-normal" name="trv-mode" class="custom-control-input">
+              <label class="custom-control-label" for="trv-mode-normal">Normal</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="trv-mode-tampon" name="trv-mode" class="custom-control-input">
+              <label class="custom-control-label" for="trv-mode-tampon">Tampon</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="trv-mode-gris" name="trv-mod" class="custom-control-input">
+              <label class="custom-control-label" for="trv-mode-gris">Gris (3D)</label>
+            </div>
+        </div>
+
+        <div class="col col-md-8 ltt-col3" style="border: solid; border-width: 1px; border-color: slategray;">
+            Mode Avancé
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col col-md-4 ltt-col2">
+            Résolution
+        </div>
+
+        <div class="col col-md-8 ltt-col3" style="border: solid; border-width: 1px;">
+            Type de Gravure
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+    </div>
+    <div class="row">
         <div class="col col-md-8">
             <div class="form-row ltt-form-ps"><!-- align-items-center"-->
                 <div class="form-group">
@@ -115,10 +154,18 @@
 
         <!--div class="form-group col-md-2"-->
         <div class="col col-md-4 ltt-col2">
-            <div class="form-group">
-                <input type="text"
-                       class="form-control form-control-sm ltt-travail-label" disabled placeholder="Gravure.">
+            <div class="custom-control custom-radio">
+              <input type="radio" id="trv-cutmode-couleur" name="trv-cutmode" class="custom-control-input">
+              <label class="custom-control-label" for="trv-cutmode-couleur">Par couleur</label>
             </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="trv-cutmode-dessin" name="trv-cutmode" class="custom-control-input">
+              <label class="custom-control-label" for="trv-cutmode-dessin">Par dessin</label>
+            </div>
+            <!--div class="form-group">
+                <input type="text"
+                       class="form-control form-control-sm ltt-travail-label" disabled placeholder="Gravure">
+            </div-->
         </div>
     </div>
     <!--/div-->

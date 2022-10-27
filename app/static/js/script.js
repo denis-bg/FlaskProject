@@ -8,7 +8,8 @@ function TestAlert() {
 
 $('#laser-tab').on('shown.bs.tab', function () { InitJS_Laser();  });
 function InitJS_Laser() {
-    loadHTML("help-content", "help-laser.html");
+    alert("JSLaser");
+    //loadHTML("help-content", "help-laser.html");
 }
 
 $('#travail-tab').on('shown.bs.tab', function () { InitJS_Travail();  });
@@ -17,29 +18,34 @@ function InitJS_Travail() {
     if($('#chkdecoupe').length > 0) chkdecoupe.onclick = function() { Toggle_flag('decoupe'); };
     if($('#chkairblow').length > 0) chkairblow.onclick = function() { Toggle_flag('airblow'); };
 
-    loadHTML("help-content", "help-travail.html");
+    //loadHTML("help-content", "help-travail.html");
 }
 
 $('#page-tab').on('shown.bs.tab', function () { InitJS_Page();  });
 function InitJS_Page() {
-    loadHTML("help-content", "help-page.html");
+    //loadHTML("help-content", "help-page.html");
 }
 
 $('#puissance-tab').on('shown.bs.tab', function () { InitJS_Puissance();  });
 function InitJS_Puissance() {
-    loadHTML("help-content", "help-puissance.html");
+    //loadHTML("help-content", "help-puissance.html");
 }
 
 function loadHTML(id, filename) {
-    //console.log(`div id: ${id}, filename: ${filename}`);
+    console.log(`div id: ${id}, filename: ${filename}`);
     element = document.getElementById(id);
     file = "static/helpfiles/"+filename;
+    alert(file)
+    //return
+    let xhttp;
     if (file) {
+      msg="2-"+file
+      alert(msg)
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         //alert(filename);
         if (this.readyState == 4) {
-          if (this.status == 200) element.innerHTML = this.responseText;
+          if (this.status == 200) element.innerHTML = "Ok"; //this.responseText;
           if (this.status == 404) loadHTML("help-content", "help-404.html");
         }
       }
@@ -86,7 +92,7 @@ function TousLesMemes(e) {
   //}
 }
 
-
 $( document ).ready(function() {
-  loadHTML("help-content", "help-laser.html")
+  //loadHTML("help-content", "help-laser.html")
 });
+
