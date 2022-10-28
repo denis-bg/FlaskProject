@@ -1,102 +1,157 @@
-<!--div-- class="card-body">
-    <div class="form-row ltt-form-ps align-items-center">
-        <div class="form-group col-md-2">
-            <div style="padding: 0;" class="invisible">Gravure</div>
-            <div style="padding: 0;">Gravure</div>
-            <div style="padding: 0;">Découpe</div>
-            <div style="padding: 0;">Airblow</div>
-        </div>
-
-        <div class="form-group col-md-1">
-            <div class="form-group d-flex justify-content-center" style="padding:5;">
-                <img src="{{ url_for('static', filename='images/ltt-transp.png') }}" class="ltt-color-sm">
-            </div>
-            <div class="form-check form-check-inline">
-                {{ wtf.form_field(form.chkgravure, class="form-check-input") }}
-            </div>
-            <div class="form-check form-check-inline">
-                {{ wtf.form_field(form.chkdecoupe, class="form-check-input") }}
-            </div>
-            <div class="form-check form-check-inline">
-                {{ wtf.form_field(form.chkairblow, class="form-check-input") }}
-            </div>
-        </div>
-
-        {% for ci in form.colorinfos %}
-        {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
-        <div class="form-group col-md-1">
-            <div class="form-group d-flex justify-content-center" style="padding:5;">
-                <img src="{{ url_for('static', filename=file_name) }}" class="ltt-color-sm">
-            </div>
-            <div class="d-flex justify-content-center" style="padding:0;">
-                {{ wtf.form_field(ci.gravure, class="form-check-input") }}
-            </div>
-            <div class="d-flex justify-content-center" style="padding:0;">
-                {{ wtf.form_field(ci.decoupe, class="form-check-input") }}
-            </div>
-            <div class="d-flex justify-content-center" style="padding:0;">
-                {{ wtf.form_field(ci.airblow, class="form-check-input") }}
-            </div>
-        </div>
-        {% endfor %}
-
-        <div class="form-group col-md-2">
-            <div style="padding: 0;" class="invisible">Gravure</div>
-            <div style="padding: 0;">Gravure</div>
-            <div style="padding: 0;">Découpe</div>
-            <div style="padding: 0;">Airblow</div>
-        </div>
-
-
-    </div>
-</div-->
-
 <div class="container ltt-col1">
     <div class="row">
-        <div class="col col-md-4 ltt-col2" style="border: solid; border-width: 1px; border-color: slategray;">
-            Mode Travail
-            <div class="custom-control custom-radio">
-              <input type="radio" id="trv-mode-normal" name="trv-mode" class="custom-control-input">
-              <label class="custom-control-label" for="trv-mode-normal">Normal</label>
+        <div class="col col-md-4 ltt-left">
+            <label class="ltt-label ltt-travail">Mode Travail</label>
+
+            {#{ form.trvmode.label(class="ltt-label ltt-travail") }#}
+
+            <div class="form-check"><!-- ltt-form-ps"-->
+            {% for subfield in form.trvmode %}
+                {{ subfield(class="form-check form-check-input") }}
+                {{ subfield.label(class="ltt-label ltt-travail", onchange="alert('Ca marche');") }}
+                {% if loop.index0 == 0 %}
+                <div class="form-check"><!-- ltt-form-ps"-->
+                    {{ form.trvtrame(class="form-check form-check-input ltt-norm") }}
+                    {{ form.trvtrame.label(class="ltt-label ltt-travail") }}
+                </div>
+                    <div style="padding-top:10px;">
+                        {{ form.trvmethode(class="form-control ltt-select ltt-norm") }}
+                    </div>
+                <br>
+                {% elif loop.index0 == 1 %}
+                <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                    {{ form.trvoffset.label(class="ltt-label ltt-travail") }}
+                    {{ form.trvoffset(class="form-control ltt-travail-input ltt-tampon") }}
+                </div>
+                <br><br>
+                {% else %}
+                <div class="form-check"><!-- style="padding-top:20px;"-->
+                    {{ form.trv16niv(class="form-check form-check-input ltt-gris") }}
+                    {{ form.trv16niv.label(class="ltt-label ltt-travail") }}
+                </div>
+                <p></p>
+                {% endif %}
+            {% endfor %}
             </div>
-            <div class="custom-control custom-radio">
-              <input type="radio" id="trv-mode-tampon" name="trv-mode" class="custom-control-input">
-              <label class="custom-control-label" for="trv-mode-tampon">Tampon</label>
-            </div>
-            <div class="custom-control custom-radio">
-              <input type="radio" id="trv-mode-gris" name="trv-mod" class="custom-control-input">
-              <label class="custom-control-label" for="trv-mode-gris">Gris (3D)</label>
-            </div>
+
         </div>
 
-        <div class="col col-md-8 ltt-col3" style="border: solid; border-width: 1px; border-color: slategray;">
-            Mode Avancé
+        <div class="col col-md-8">
+            <label class="ltt-label ltt-travail">Mode Avancé</label>
+                <div class="form-check">
+                    <div class="ltt-travail-form">
+                    <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvmodenb(class="form-check form-check-input") }}
+                            {{ form.trvmodenb.label(class="ltt-label ltt-travail") }}
+                        </div>
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvoptimvect(class="form-check form-check-input") }}
+                            {{ form.trvoptimvect.label(class="ltt-label ltt-travail") }}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="ltt-travail-form">
+                    <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvmirror(class="form-check form-check-input") }}
+                            {{ form.trvmirror.label(class="ltt-label ltt-travail") }}
+                        </div>
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvjctcurve(class="form-check form-check-input") }}
+                            {{ form.trvjctcurve.label(class="ltt-label ltt-travail") }}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="ltt-travail-form">
+                    <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvpulse(class="form-check form-check-input") }}
+                            {{ form.trvpulse.label(class="ltt-label ltt-travail") }}
+                        </div>
+                        <div class="form-check form-check-inline"><!-- style="padding-top:20px;"-->
+                            {{ form.trvnegatif(class="form-check form-check-input") }}
+                            {{ form.trvnegatif.label(class="ltt-label ltt-travail") }}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            <hr>
+
+            <label class="ltt-label ltt-travail">Impulsion</label>
+            <div class="form-check"><!-- ltt-form-ps"-->
+                <div class="form-input">
+                    <div class="form-check ltt-travail-form"><!-- style="padding: 5px;"-->
+                        <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                            {{ form.trvpulsecpt.label(class="ltt-label ltt-travail") }}
+                            {{ form.trvpulsecpt(class="form-control ltt-travail-input") }}
+                        </div>
+                    </div>
+                    <div class="form-check ltt-travail-form"><!-- style="padding: 5px;"-->
+                        <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                            {{ form.trvpulseon.label(class="ltt-label ltt-travail") }}
+                            {{ form.trvpulseon(class="form-control ltt-travail-input") }}
+                            <label class="ltt-label ltt-travail">&nbsp;ms</label>
+                        </div>
+                    </div>
+                    <div class="form-check ltt-travail-form"><!-- style="padding: 5px;"-->
+                        <div class="form-check form-check-inline"><!-- ltt-form-ps"><!-- style="margin-bottom: 0px;"-->
+                            {{ form.trvpulseoff.label(class="ltt-label ltt-travail") }}
+                            {{ form.trvpulseoff(class="form-control ltt-travail-input") }}
+                            <label class="ltt-label ltt-travail">&nbsp;ms</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
     <hr>
 
     <div class="row">
-        <div class="col col-md-4 ltt-col2">
-            Résolution
+        <div class="col col-md-4 ltt-left">
+            <label class="ltt-label">Résolution (DPI)</label>
+            <div class="form-check"><!-- ltt-form-ps"-->
+                    {{ form.trvresol(class="form-control ltt-select") }}
+            </div>
+            <br>
         </div>
 
-        <div class="col col-md-8 ltt-col3" style="border: solid; border-width: 1px;">
-            Type de Gravure
+        <div class="col col-md-8 ">
+            <label class="ltt-label">Type de Gravure</label>
+            <div class="form-check"><!-- ltt-form-ps"-->
+                            <div class="form-check ltt-travail-form"><!-- style="padding: 5px;"-->
+                                <div class="form-check form-check-inline ">
+                                    {{ form.trvtypemode.label(class="ltt-label ltt-travail") }}
+                                    {{ form.trvtypemode(class="form-control ltt-select") }}
+                                </div>
+                            </div>
+                            <div class="form-check ltt-travail-form"><!-- style="padding: 5px;"-->
+                                <div class="form-check form-check-inline ">
+                                    {{ form.trvtypedir.label(class="ltt-label ltt-travail") }}
+                                    {{ form.trvtypedir(class="form-control ltt-select") }}
+                                    {#{ form.trvtypedir(class="form-check form-check-input") }#}
+                                </div>
+                            </div>
+            </div>
         </div>
     </div>
 
     <hr>
 
-    <div class="row">
-
-    </div>
     <div class="row">
         <div class="col col-md-8">
-            <div class="form-row ltt-form-ps"><!-- align-items-center"-->
+
+            <label class="ltt-label">Réglage Découpe/Gravure</label>
+
+            <div class="form-row ltt-travail-form"><!-- align-items-center"-->
                 <div class="form-group">
-                    <input type="text" disabled placeholder="Gravure"
-                           class="form-control form-control-sm ltt-travail-label">
+                    <label class="ltt-label ltt-label-sm ltt-travail">Gravure</label>
                 </div>
 
                 <div class="form-check form-check-inline" style="margin-right:30px;">
@@ -105,17 +160,15 @@
 
                 {% for ci in form.colorinfos %}
                 <div class="form-check form-check-inline">
-                    {{ wtf.form_field(ci.gravure,
-                    class="form-check-input") }}
+                    {{ wtf.form_field(ci.gravure, class="form-check-input") }}
                 </div>
                 {% endfor %}
             </div>
 
 
-            <div class="form-row ltt-form-ps">
+            <div class="form-row ltt-travail-form">
                 <div class="form-group">
-                    <input type="text"
-                           class="form-control form-control-sm ltt-travail-label" disabled placeholder="Découpe">
+                    <label class="ltt-label ltt-label-sm ltt-travail">Découpe</label>
                 </div>
 
                 <div class="form-check form-check-inline" style="margin-right:30px;">
@@ -131,10 +184,9 @@
                 {% endfor %}
             </div>
 
-            <div class="form-row ltt-form-ps"><!-- align-items-center"-->
+            <div class="form-row ltt-travail-form">
                 <div class="form-group">
-                    <input type="text"
-                           class="form-control form-control-sm ltt-travail-label" disabled placeholder="Airblow">
+                    <label class="ltt-label ltt-label-sm ltt-travail">Airblow</label>
                 </div>
 
                 <div class="form-check form-check-inline" style="margin-right:30px;">
@@ -152,21 +204,18 @@
             </div>
         </div>
 
-        <!--div class="form-group col-md-2"-->
-        <div class="col col-md-4 ltt-col2">
-            <div class="custom-control custom-radio">
-              <input type="radio" id="trv-cutmode-couleur" name="trv-cutmode" class="custom-control-input">
-              <label class="custom-control-label" for="trv-cutmode-couleur">Par couleur</label>
+        <div class="col col-md-4">
+            <br><br>
+
+            <div class="form-check ltt-travail-radio">
+              <input class="form-check-input" type="radio" name="trv-cutmode" id="trv-cutmode-couleur" value="option1" checked>
+              <label class="ltt-label ltt-label ltt-travail" for="trv-cutmode-couleur">Par couleur</label>
             </div>
-            <div class="custom-control custom-radio">
-              <input type="radio" id="trv-cutmode-dessin" name="trv-cutmode" class="custom-control-input">
-              <label class="custom-control-label" for="trv-cutmode-dessin">Par dessin</label>
+            <div class="form-check ltt-travail-radio">
+              <input class="form-check-input" type="radio" name="trv-cutmode" id="trv-cutmode-dessin" value="option2">
+              <label class="ltt-label ltt-label ltt-travail" for="trv-cutmode-dessin">Par dessin</label>
             </div>
-            <!--div class="form-group">
-                <input type="text"
-                       class="form-control form-control-sm ltt-travail-label" disabled placeholder="Gravure">
-            </div-->
+
         </div>
     </div>
-    <!--/div-->
 </div>

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm, Form
 from flask_wtf.file import FileRequired, FileAllowed
-from wtforms import DecimalField, StringField, FieldList, FormField, BooleanField, FileField, SubmitField
+from wtforms import DecimalField, StringField, FieldList, FormField, BooleanField, FileField, SubmitField, RadioField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 
 
@@ -38,6 +38,28 @@ class LTTForm(FlaskForm):
     chkgravure = BooleanField(label="")
     chkdecoupe = BooleanField(label="")
     chkairblow = BooleanField(label="")
+    trvmode    = RadioField('', choices=[('0','Normal'),('1','Tampon'),('2','Gris (3D)')])
+    trvtrame    = BooleanField('Trame')
+    trv16niv    = BooleanField('16 niveaux')
+    trvmethode  = SelectField('Méthode', choices=[('0', 'Méthode 1'), ('1', 'Méthode 2'), ('2', 'Méthode 3'),
+                                                  ('3', 'Méthode 4'), ('4', 'Méthode 5'), ('5', 'Méthode 6')])
+    trvresol    = SelectField('Résolution', choices=[('0', '1000'), ('1', '800'), ('2', '666'), ('3', '500'),
+                                                     ('4',  '333'), ('5', '250'), ('6', '200'), ('7', '166')])
+    trvoffset   = StringField('Offset')
+    trvtypemode = SelectField('Mode', choices=[('0', 'Normal'), ('1', 'Précis')])
+    trvtypedir  = SelectField('Direction', choices=[('0', 'Haut vers Bas'), ('1', 'Bas vers Haut')])
+    trvpulsecpt = StringField('Compteur')
+    trvpulseon  = StringField('Période')
+    trvpulseoff = StringField('Pause Période')
+    trvmodenb   = BooleanField('N&B')
+    trvoptimvect = BooleanField('Optim. Vect.')
+    trvmirror    = BooleanField('Mirroir')
+    trvjctcurve  = BooleanField('Jct courbes')
+    trvpulse     = BooleanField('Impulsion')
+    trvnegatif   = BooleanField('Négatif')
+
+
+
 
 
 

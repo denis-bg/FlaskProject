@@ -8,8 +8,11 @@ from collections import namedtuple
 
 
 def populateLTTForm(filename):
-    def divby10(s):
-        l = len(s) - 1
+    def str2bool(s):
+        return True if s == '1' else False
+
+    def divby10pi(s, i):
+        l = len(s) - i
         return s[:l] + '.' + s[l:]
 
     path = app.root_path + '/public/lttfiles/'
@@ -32,8 +35,10 @@ def populateLTTForm(filename):
     colorinfo = namedtuple('ColorInfo', ['power', 'speed', 'ppi', 'offset', 'focus', 'gravure', 'decoupe', 'airblow'])
     ci = []
     for i in range(8):
-        ci.append(colorinfo(divby10(pow[i]), divby10(spe[i]), ppi[i], off[i], foc[i], 0 if '0' in gra[i] else 1,
-                            0 if '0' in dec[i] else 1, 0 if '0' in air[i] else 1))
+        ci.append(colorinfo(divby10pi(pow[i], 1), divby10pi(spe[i], 1), ppi[i], off[i], foc[i],
+                            0 if '0' in gra[i] else 1,
+                            0 if '0' in dec[i] else 1,
+                            0 if '0' in air[i] else 1))
 
     print(0 if '0' in gra else 1)
     data = {
@@ -41,6 +46,24 @@ def populateLTTForm(filename):
         'chkgravure': 0 if '0' in gra else 1,
         'chkdecoupe': 0 if '0' in dec else 1,
         'chkairblow': 0 if '0' in air else 1,
+        'trvmode': lttinfos['Mode'],
+        'trvtrame': str2bool(lttinfos['Halftone']),
+        'trv16niv': str2bool(lttinfos['CustomPower']),
+        'trvmethode': lttinfos['DitheringMethod'],
+        'trvresol': lttinfos['Resolution'],
+        'trvoffset': lttinfos['StampOffset'],
+        'trvtypemode': lttinfos['RasterEnd'],
+        'trvtypedir': lttinfos['ScanlineOrder'],
+        'trvpulsecpt': lttinfos['PulseCount'],
+        'trvpulseon': divby10pi(lttinfos['PulseEnableTime'], 2),
+        'trvpulseoff': divby10pi(lttinfos['PulseDisableTime'], 2),
+        'trvmodenb': str2bool(lttinfos['GrayMode']),
+        'trvoptimvec': str2bool(lttinfos['VectorOptimization']),
+        'trvmirror': str2bool(lttinfos['Mirror']),
+        'trvjctcurve': str2bool(lttinfos['JointCurves']),
+        'trvpulse': str2bool(lttinfos['PulseMode']),
+        'trvnegatif': str2bool(lttinfos['Invert']),
+
     }
     return data
 
@@ -63,7 +86,7 @@ def lttconfig(name=None):
         filename = 'DEFAULT-LTT.LCF'
     else:
         filename = os.path.basename(name)
-        print(name+'-'+filename)
+        print(name + '-' + filename)
     data = populateLTTForm(filename)
     # data = populateLTTForm('text.txt')
 
@@ -117,8 +140,8 @@ def upload():
 
 @app.route('/nup', methods=['GET', 'POST'])
 def nup():
-# https://n8henrie.com/2015/05/better-bootstrap-file-upload-button/
-# A CORRIGER
+    # https://n8henrie.com/2015/05/better-bootstrap-file-upload-button/
+    # A CORRIGER
     form = UploadForm()
     if request.method == 'POST' and form.validate_on_submit():
         input_file = request.files['input_file']
@@ -127,6 +150,7 @@ def nup():
         # Do stuff
     else:
         return render_template('nupload.html', form=form)
+
 
 @app.route('/wfile')
 def writefile():
@@ -137,6 +161,7 @@ def writefile():
     fo.writelines(filebuffer)
     fo.close()
     return 'ok'
+
 
 '''
 @app.route('/showltt', methods=['GET', 'POST'])
@@ -162,6 +187,3 @@ def showltt():
     # return render_template('testpane.html', form=form)
     return render_template('ltt_config.html', form=form)
 '''
-
-
-

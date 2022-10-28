@@ -1,5 +1,5 @@
 <div class="container ltt-col1">
-    <div class="form-row ltt-form-ps align-items-center">
+    <div class="form-row align-items-center">
         <div class="form-group col-md-1" style="margin-bottom: 0px;">
             <img src="{{ url_for('static', filename='images/ltt-transp.png') }}"
                  class="ltt-color">
@@ -18,23 +18,20 @@
                    title="Vitesse fixe pour toutes les couleurs<br>Puissance variable">
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
-            <input type="text" placeholder="PPI"
-                   class="form-control form-control-sm ltt-laser-label" disabled>
+            <label class="ltt-label ltt-label-sm ltt-laser">PPI</label>
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
-            <input type="text" placeholder="Offset"
-                   class="form-control form-control-sm ltt-laser-label" disabled>
+            <label class="ltt-label ltt-label-sm ltt-laser">Offset</label>
         </div>
         <div class="form-group col" style="margin-bottom: 0px;">
-            <input type="text" placeholder="Focus"
-                   class="form-control form-control-sm ltt-laser-label" disabled>
+            <label class="ltt-label ltt-label-sm ltt-laser">Focus</label>
         </div>
     </div>
 
     <hr style="margin:0px;">
     {% for ci in form.colorinfos %}
     {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
-    <div class="form-row ltt-form-ps align-items-center">
+    <div class="form-row align-items-center">
         <div class="form-group col-md-1" style="margin-bottom: 10px;">
             <img src="{{ url_for('static', filename=file_name) }}"
                  class="ltt-color">

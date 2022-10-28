@@ -16,13 +16,13 @@
   {% endif %}
 {% endwith %#}
 
-<form method="POST" action="" novalidate onkeydown="return event.key != 'Enter';">
+<form method="POST" name="MyForm" action="" novalidate onkeydown="return event.key != 'Enter';">
 {{ form.csrf_token }}
     {% if form.errors %}
     {{ form.errors }}
     {% endif %}
     <hr>
-<div class="container ltt-col1">
+<div class="container content-row ltt-col1">
 
    <div class="row">
         <div class="col-5">
