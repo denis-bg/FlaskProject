@@ -22,16 +22,28 @@
     {{ form.errors }}
     {% endif %}
     <hr>
-<div class="container content-row ltt-col1">
+<div class="container content-row">
 
    <div class="row">
-        <div class="col-5">
+       <div class="col-2"></div>
+        <!--div class="col-6">
             <div class="container">
-                <div id="help-content"></div>
+                <div id="help-laser" class="ltt-helphidden">
+                    {% include 'help-laser.html' %}
+                </div>
+                <div id="help-travail" class="ltt-helphidden">
+                    {% include 'help-travail.html' %}
+                </div>
+                <div id="help-page" class="ltt-helphidden">
+                    {% include 'help-page.html' %}
+                </div>
+                <div id="help-puissance" class="ltt-helphidden">
+                    {% include 'help-puissance.html' %}
+                </div>
             </div>
-        </div>
+        </div-->
 
-        <div class="col-7">
+        <div class="col-8">
             <div class="card ltt-card mb- tab-card">
             {% with messages = get_flashed_messages(with_categories=true) %}
               <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
@@ -47,25 +59,39 @@
                 <div class="card-header tab-card-header">
 
 
-                    <ul class="nav nav-tabs card-header-tabs" id="lttTab" role="tablist">
-                        <li class="nav-item">
+                    <ul class="nav nav-fill nav-tabs card-header-tabs" id="lttTab" role="tablist">
+                        <li class="nav-item" data-id="Laser">
                             <a class="nav-link active" id="laser-tab" data-toggle="tab" href="#laser" role="tab"
                                aria-controls="Laser" aria-selected="false">Laser</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-id="Travail">
                             <a class="nav-link" id="travail-tab" data-toggle="tab" href="#travail" role="tab"
                                aria-controls="Travail" aria-selected="true">Travail</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-id="Page">
                             <a class="nav-link" id="page-tab" data-toggle="tab" href="#page" role="tab"
                                aria-controls="Page" aria-selected="false">Page</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-id="Puissance">
                             <a class="nav-link" id="puissance-tab" data-toggle="tab" href="#puissance" role="tab"
                                aria-controls="Puissance" aria-selected="false">Puissance</a>
                         </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item"><!-- style="margin-left: 150px;;"-->
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ltt-helpModal">
+                               ?
+                            </button>
+                        <!--input class="btn btn-info" type="submit" value=" ? "-->
+                        </li>
+
+                        <li class="nav-item"><!-- style="margin-left: 150px;;"-->
+                        </li>
+
+
                     </ul>
                 </div>
+
 
                     <div class="tab-content" id="lttTabContent">
                         <div class="tab-pane show active fade p-3" id="laser" role="tabpanel" aria-labelledby="laser-tab">
@@ -85,6 +111,7 @@
                         <div class="tab-pane fade p-3" id="puissance" role="tabpanel" aria-labelledby="puissance-tab">
                         </div>
                     </div>
+
                 <!--/form-->
             </div>
         </div>
@@ -92,13 +119,47 @@
     </div>
 
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-4"></div>
+        <div class="col-4">
             <input class="btn btn-primary" type="submit" value="Enregistrer les modifications">
         </div>
-        <div class="col-2"></div>
+        <div class="col-4"></div>
     </div>
 </div>
 </form>
+
+
+<!-- The Modal -->
+<!--https://getbootstrap.com/docs/4.6/components/modal/#varying-modal-content-->
+<div class="modal" id="ltt-helpModal">
+ <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+       <!-- Modal Header -->
+       <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <!-- Modal body -->
+       <div class="modal-body">
+                <div id="laser-tab-help" class="">
+                    {% include 'help-laser.html' %}
+                </div>
+                <div id="travail-tab-help" class="ltt-helphidden">
+                    {% include 'help-travail.html' %}
+                </div>
+                <div id="page-tab-help" class="ltt-helphidden">
+                    {% include 'help-page.html' %}
+                </div>
+                <div id="puissance-tab-help" class="ltt-helphidden">
+                    {% include 'help-puissance.html' %}
+                </div>
+       </div>
+       <!-- Modal footer -->
+       <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       </div>
+    </div>
+ </div>
+</div>
 {% endblock %}
 

@@ -1,6 +1,6 @@
 import os
 
-from flask import render_template, flash, redirect, url_for, request, send_from_directory
+from flask import session, render_template, flash, redirect, url_for, request, send_from_directory
 from werkzeug.utils import secure_filename
 from app import app, lttdir, fichiers
 from app.forms import LTTForm, UploadForm
@@ -22,6 +22,8 @@ def populateLTTForm(filename):
 
     premiere_ligne = list.pop(0)
     lttinfos = dict(kv.split('=') for kv in list)
+    session['lttinfos'] = lttinfos
+    session['premiere_ligne'] = premiere_ligne
 
     pow = lttinfos['Power'].split(" ")
     spe = lttinfos['Speed'].split(" ")
@@ -40,12 +42,14 @@ def populateLTTForm(filename):
                             0 if '0' in dec[i] else 1,
                             0 if '0' in air[i] else 1))
 
-    print(0 if '0' in gra else 1)
     data = {
         'colorinfos': ci,
-        'chkgravure': 0 if '0' in gra else 1,
-        'chkdecoupe': 0 if '0' in dec else 1,
-        'chkairblow': 0 if '0' in air else 1,
+        # 'chkgravure': 0 if '0' in gra else 1,
+        # 'chkdecoupe': 0 if '0' in dec else 1,
+        # 'chkairblow': 0 if '0' in air else 1,
+        'trvgravure': str2bool(lttinfos['Engrave']),
+        'trvdecoupe': str2bool(lttinfos['Cut']),
+        'trvairblow': str2bool(lttinfos['AirBlow']),
         'trvmode': lttinfos['Mode'],
         'trvtrame': str2bool(lttinfos['Halftone']),
         'trv16niv': str2bool(lttinfos['CustomPower']),
@@ -65,7 +69,38 @@ def populateLTTForm(filename):
         'trvnegatif': str2bool(lttinfos['Invert']),
 
     }
+    # print(str2bool(lttinfos['PulseMode']))
     return data
+
+
+def saveData(form):
+    def bool2str(b):
+        return '1' if b else '0'
+
+    lttavant = session['lttinfos']
+
+    print(lttavant)
+    print('>>>')
+    print(form.trvgravure.data, form.trvdecoupe.data, form.trvairblow.data)
+    print(bool2str(form.trvgravure.data), bool2str(form.trvdecoupe.data), bool2str(form.trvairblow.data))
+    lttavant.update({
+        'Engrave': bool2str(form.trvgravure.data),
+        'Cut': bool2str(form.trvdecoupe.data),
+        'AirBlow': bool2str(form.trvairblow.data),
+    })
+    print(session['premiere_ligne'])
+    print('>>>')
+    path = app.root_path + '/public/lttfiles/'
+    file = path + 'montest.txt'
+    fo = open(file, "w")
+    filebuffer = [session['premiere_ligne']]
+    for key, value in lttavant.items():
+        filebuffer.append(("{}={}").format(key, value))
+
+    print(filebuffer)
+    fo.write('\n'.join(filebuffer))
+    # fo.writelines(filebuffer)
+    fo.close()
 
 
 @app.route("/")
@@ -93,16 +128,17 @@ def lttconfig(name=None):
     form = LTTForm(data=data)
     if form.validate_on_submit():
         # A FAIRE : enregistrement du fichier
-        flash('Fichier enregistré', 'danger')
-        return render_template('ltt_config.html', form=form)
+        saveData(form)
+        # flash('Fichier enregistré', 'danger')
+
         '''
         print('debut')
         for ci in form.colorinfos:
             print(ci.power.data)
         print('fin')
         '''
+        return render_template('ltt_config.html', form=form)
 
-    print(form.errors)
     return render_template('ltt_config.html', form=form)
 
 

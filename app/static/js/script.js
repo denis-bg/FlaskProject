@@ -8,18 +8,21 @@ function TestAlert() {
 
 $('#laser-tab').on('shown.bs.tab', function () { InitJS_Laser();  });
 function InitJS_Laser() {
-
-    //loadHTML("help-content", "help-laser.html");
 }
 
 $('#travail-tab').on('shown.bs.tab', function () { InitJS_Travail();  });
 function InitJS_Travail() {
-    if($('#chkgravure').length > 0) chkgravure.onclick = function() { Toggle_flag('gravure'); };
-    if($('#chkdecoupe').length > 0) chkdecoupe.onclick = function() { Toggle_flag('decoupe'); };
-    if($('#chkairblow').length > 0) chkairblow.onclick = function() { Toggle_flag('airblow'); };
-    //alert($('trvmode').value)
+
+    //trvpulse.onclick = function() { VisibilityPulseParams(); };
+    //chkgravure.onclick = function() { Toggle_flag('gravure'); };
+    //chkdecoupe.onclick = function() { Toggle_flag('decoupe'); };
+    //chkairblow.onclick = function() { Toggle_flag('airblow'); };
+ //   trvgravure.onclick = function() { Visibility('trvgravure', '.ltt-gra-chk'); };
+ //   trvdecoupe.onclick = function() { Visibility('trvdecoupe', '.ltt-dec-chk'); };
+ //   trvairblow.onclick = function() { Visibility('trvairblow', '.ltt-air-chk'); };
 
     rad = document.MyForm.trvmode;
+    //alert(rad.value);
     if (rad.value == 0) {
         $('.ltt-tampon').attr("disabled", "true");
         $('.ltt-gris').attr("disabled", "true");
@@ -48,61 +51,26 @@ function InitJS_Travail() {
         $('.ltt-gris').removeAttr("disabled");
     });
 
-    /*var rad = document.MyForm.trvmode;
-    alert(rad.value);
-    var prev = null;
-    for (var i = 0; i < rad.length; i++) {
-        rad[i].addEventListener('change', function() {
-            (prev) ? console.log(prev.value): null;
-            if (this !== prev) {
-                prev = this;
-            }
-            console.log(this.value)
-        });
-    }*/
+//trvpulse.onclick = function() { setPulseParams(); };
+//    setPulseParams();
+//    Visibility('trvgravure', '.ltt-gra-chk');
+//    Visibility('trvdecoupe', '.ltt-dec-chk');
+//    Visibility('trvairblow', '.ltt-air-chk');
 }
 
 $('#page-tab').on('shown.bs.tab', function () { InitJS_Page();  });
 function InitJS_Page() {
-    //loadHTML("help-content", "help-page.html");
 }
 
 $('#puissance-tab').on('shown.bs.tab', function () { InitJS_Puissance();  });
 function InitJS_Puissance() {
-    //loadHTML("help-content", "help-puissance.html");
 }
 
-function loadHTML(id, filename) {
-    console.log(`div id: ${id}, filename: ${filename}`);
-    element = document.getElementById(id);
-    file = "static/helpfiles/"+filename;
-    alert(file)
-    //return
-    let xhttp;
-    if (file) {
-      msg="2-"+file
-      alert(msg)
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        //alert(filename);
-        if (this.readyState == 4) {
-          if (this.status == 200) element.innerHTML = "Ok"; //this.responseText;
-          if (this.status == 404) loadHTML("help-content", "help-404.html");
-        }
-      }
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      return;
-    }
+function VisibilityGDA(chk, cla) {
+//alert(document.getElementById(chk).checked) ;
+    if (document.getElementById(chk).checked) $(cla).removeAttr("disabled")
+    else $(cla).attr("disabled", "true");
 }
-
-
-/* $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-  var target = $(e.target).attr("href") // activated tab
-  id = "help-content";
-  filename = 'help-'+target.substring(1)+".html"
-  loadHTML(id, filename)
-}); */
 
 function Toggle_flag(col) {
     new_state = document.getElementById("chk"+col).checked
@@ -110,6 +78,12 @@ function Toggle_flag(col) {
        chk = "colorinfos-"+ i.toString() + "-" + col
        document.getElementById(chk).checked = new_state
     }
+}
+
+function VisibilityPulseParams() {
+    pul = document.getElementById('trvpulse').checked;
+    if (pul) $('.ltt-pulse').removeAttr("disabled");
+    else $('.ltt-pulse').attr("disabled", "true");
 }
 
 function TousLesMemes(e) {
@@ -133,7 +107,40 @@ function TousLesMemes(e) {
   //}
 }
 
+
+$('#ltt-helpModal').on('show.bs.modal', function (event) {
+    onglet = $("#lttTab li a.active").html();
+    tabid = $("#lttTab li a.active").attr("id");
+
+    var modal = $(this)
+    modal.find('.modal-title').text('Aide ' + onglet)
+
+    help = tabid+'-help';
+    $('#laser-tab-help').hide();
+    $('#travail-tab-help').hide();
+    $('#page-tab-help').hide();
+    $('#puissance-tab-help').hide();
+    $('#'+help).show();
+
+  //modal.find('.modal-body input').val(recipient)
+})
+
 $( document ).ready(function() {
-  //loadHTML("help-content", "help-laser.html")
+    $('#help-laser').show();
+    $('#help-travail').hide();
+    $('#help-page').hide();
+    $('#help-puissance').hide();
+
+    VisibilityGDA('trvgravure', '.ltt-gra-chk');
+    VisibilityGDA('trvdecoupe', '.ltt-dec-chk');
+    VisibilityGDA('trvairblow', '.ltt-air-chk');
+
+    trvgravure.onclick = function() { VisibilityGDA('trvgravure', '.ltt-gra-chk'); };
+    trvdecoupe.onclick = function() { VisibilityGDA('trvdecoupe', '.ltt-dec-chk'); };
+    trvairblow.onclick = function() { VisibilityGDA('trvairblow', '.ltt-air-chk'); };
+
+    trvpulse.onclick = function() { VisibilityPulseParams(); };
+    VisibilityPulseParams();
+
 });
 

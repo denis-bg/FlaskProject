@@ -2,6 +2,11 @@ body {
   background-color: #fefbd8;
 }
 
+hr {
+  margin-bottom:5px;
+  margin-top: 5px;
+}
+
 .ltt-col1 {
   background-color: #f0efef;
 }
@@ -18,7 +23,13 @@ body {
   background-color: #b0aac0;
 }
 
+.ltt-laser-ligne1 {
+  margin-bottom: 0px;
+}
 
+.ltt-laser-lignes {
+  margin-bottom: 5px;
+}
 .ltt-color { /* Les 8 couleurs du drivers en grand */
   width: 24;
   height:auto;
@@ -34,6 +45,9 @@ body {
   color: darkslategrey;
 }
 
+.ltt-helphidden {
+    display: none;
+}
 .ltt-input {
 /*max-width: 100px;*/
 margin: 5px;
@@ -45,7 +59,7 @@ margin-bottom: 3px;*/
 font-size: 14px;
 }
 
-.ltt-label-sm, ltt-travail-sm {
+.ltt-label-sm, .ltt-travail-sm {
 font-size: 12;
 }
 
@@ -59,6 +73,9 @@ font-size: 12;
   margin-bottom: 0px;
 }
 
+.ltt-travail-sm {
+  width: 87px;
+}
 .ltt-travail-label, .ltt-laser-label  {
 /*outline: none;*/
 width: 100px;
@@ -101,6 +118,9 @@ padding-left: 10px;
 padding-bottom: 10px;
 }
 
+.ltt-travail-formgda {
+    margin-right: 20px;
+}
 .btn-black {
   background-color: #000000;
   color:#000000;

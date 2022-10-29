@@ -1,48 +1,55 @@
 <div class="container ltt-col1">
-    <div class="form-row align-items-center">
-        <div class="form-group col-md-1" style="margin-bottom: 0px;">
+    <div class="form-row align-items-center"><!-- Ligne d'en-tete-->
+        <div class="form-group col-md-1 ltt-laser-ligne1">
             <img src="{{ url_for('static', filename='images/ltt-transp.png') }}"
                  class="ltt-color">
         </div>
-        <div class="form-group col" style="margin-bottom: 0px;">
+        <div class="form-group col ltt-laser-ligne1">
             <input type="text" id="power" placeholder="Puissance"
                    class="form-control form-control-sm ltt-laser-input" onblur = "TousLesMemes(this);"
                    data-toggle="tooltip" data-placement="top" data-html=true
                    title="Puissance fixe pour toutes les couleurs<br>Vitesse variable">
 
         </div>
-        <div class="form-group col" style="margin-bottom: 0px;">
+        <div class="form-group col ltt-laser-ligne1">
             <input type="text" id="speed" placeholder="Vitesse" onblur = "TousLesMemes(this);"
                    class="form-control form-control-sm ltt-laser-input"
                    data-toggle="tooltip" data-placement="top" data-html=true
                    title="Vitesse fixe pour toutes les couleurs<br>Puissance variable">
         </div>
-        <div class="form-group col" style="margin-bottom: 0px;">
-            <label class="ltt-label ltt-label-sm ltt-laser">PPI</label>
+        <div class="form-group col ltt-laser-ligne1">
+            <label class="ltt-label ltt-label-sm ltt-laser">PPI
+                <span class="bi bi-exclamation-diamond-fill" style="font-size:16px; color:red;" data-html="true"
+                    data-toggle="tooltip" data-placement="top" title="ATTENTION<br>Comportement inconnu"></span>
+            </label>
         </div>
-        <div class="form-group col" style="margin-bottom: 0px;">
-            <label class="ltt-label ltt-label-sm ltt-laser">Offset</label>
+        <div class="form-group col ltt-laser-ligne1">
+            <label class="ltt-label ltt-label-sm ltt-laser">Offset
+                <span class="bi bi-exclamation-diamond-fill" style="font-size:16px; color:red;" data-html="true"
+                    data-toggle="tooltip" data-placement="top" title="ATTENTION<br>Comportement inconnu"></span>
+            </label>
         </div>
-        <div class="form-group col" style="margin-bottom: 0px;">
-            <label class="ltt-label ltt-label-sm ltt-laser">Focus</label>
+        <div class="form-group col ltt-laser-ligne1">
+            <label class="ltt-label ltt-label-sm ltt-laser">Focus
+                <span class="bi bi-exclamation-diamond-fill" style="font-size:16px; color:red;" data-html="true"
+                    data-toggle="tooltip" data-placement="top" title="ATTENTION<br>Comportement inconnu"></span>
+            </label>
         </div>
-    </div>
+    </div><!-- Ligne d'en-tete-->
 
-    <hr style="margin:0px;">
+    <hr>
+
     {% for ci in form.colorinfos %}
     {% set file_name = "images/ltt-circle-color%d.png" % loop.index0 %}
     <div class="form-row align-items-center">
-        <div class="form-group col-md-1" style="margin-bottom: 10px;">
+        <div class="form-group col-md-1 ltt-laser-lignes">
             <img src="{{ url_for('static', filename=file_name) }}"
-                 class="ltt-color">
+                 class="ltt-color" style="padding-bottom: 5px;">
         </div>
         <div class="col">
             {{ wtf.form_field(ci.power, form_type="inline",class="form-control
             form-control-sm
             ltt-input") }}
-            {#% for error in ci.power.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %#}
         </div>
         <div class="col">
             {{ wtf.form_field(ci.speed, form_type="inline",class="form-control

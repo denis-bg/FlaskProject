@@ -35,13 +35,16 @@ class ColorInfo(Form):
 
 class LTTForm(FlaskForm):
     colorinfos = FieldList(FormField(ColorInfo), min_entries=8, max_entries=8)
-    chkgravure = BooleanField(label="")
-    chkdecoupe = BooleanField(label="")
-    chkairblow = BooleanField(label="")
-    trvmode    = RadioField('', choices=[('0','Normal'),('1','Tampon'),('2','Gris (3D)')])
-    trvtrame    = BooleanField('Trame')
-    trv16niv    = BooleanField('16 niveaux')
-    trvmethode  = SelectField('Méthode', choices=[('0', 'Méthode 1'), ('1', 'Méthode 2'), ('2', 'Méthode 3'),
+    # chkgravure = BooleanField(label="Gravure")
+    # chkdecoupe = BooleanField(label="Découpe")
+    # chkairblow = BooleanField(label="Airblow")
+    trvgravure   = BooleanField(label="Gravure")
+    trvdecoupe   = BooleanField(label="Découpe")
+    trvairblow   = BooleanField(label="Airblow")
+    trvmode      = RadioField('', choices=[('0','Normal'),('1','Tampon'),('2','Gris (3D)')])
+    trvtrame     = BooleanField('Trame')
+    trv16niv     = BooleanField('16 niveaux')
+    trvmethode   = SelectField('Méthode', choices=[('0', 'Méthode 1'), ('1', 'Méthode 2'), ('2', 'Méthode 3'),
                                                   ('3', 'Méthode 4'), ('4', 'Méthode 5'), ('5', 'Méthode 6')])
     trvresol    = SelectField('Résolution', choices=[('0', '1000'), ('1', '800'), ('2', '666'), ('3', '500'),
                                                      ('4',  '333'), ('5', '250'), ('6', '200'), ('7', '166')])
