@@ -1,2 +1,3 @@
-FLASK_APP=gdl.py
+FLASK_APP=run.py
 FLASK_DEBUG=True
+ENV="DEV"

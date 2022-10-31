@@ -2,8 +2,9 @@ import os
 
 from flask import session, render_template, flash, redirect, url_for, request, send_from_directory
 from werkzeug.utils import secure_filename
-from app import app, lttdir, fichiers
-from app.forms import LTTForm, UploadForm
+from gdlconf import app, fichiers
+# from gdlconf import lttdir
+from gdlconf.forms import LTTForm, UploadForm
 from collections import namedtuple
 
 
@@ -17,6 +18,7 @@ def populateLTTForm(filename):
 
     path = app.root_path + '/public/lttfiles/'
     file = path + filename
+    print(">>> %s" % file)
     with open(file, 'r') as f:
         list = [line.rstrip('\n') for line in f]
 
@@ -92,13 +94,14 @@ def saveData(form):
     print('>>>')
     path = app.root_path + '/public/lttfiles/'
     file = path + 'montest.txt'
-    fo = open(file, "w")
+    fo = open(file, "w", newline='\r\n')
     filebuffer = [session['premiere_ligne']]
     for key, value in lttavant.items():
         filebuffer.append(("{}={}").format(key, value))
 
     print(filebuffer)
     fo.write('\n'.join(filebuffer))
+    fo.write('\n')
     # fo.writelines(filebuffer)
     fo.close()
 
@@ -192,7 +195,7 @@ def nup():
 def writefile():
     path = app.root_path + '/public/lttfiles/'
     file = path + 'montest.txt'
-    fo = open(file, "w")
+    fo = open(file, "w", newline='\r\n')
     filebuffer = ["brave new world"]
     fo.writelines(filebuffer)
     fo.close()
