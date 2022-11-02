@@ -40,12 +40,12 @@ hr {
   height:auto;
 }
 
-.ltt-card {
+.ltt-card { /* OK*/
   background-color: white;
   color: darkslategrey;
 }
 
-.ltt-helphidden {
+.ltt-helphidden { /* OK*/
     display: none;
 }
 .ltt-input {
@@ -59,7 +59,8 @@ margin-bottom: 3px;*/
 font-size: 14px;
 }
 
-.ltt-label-sm, .ltt-travail-sm {
+/* INUTILISE .ltt-label-sm, */
+.ltt-travail-sm {
 font-size: 12;
 }
 
@@ -73,19 +74,28 @@ font-size: 12;
   margin-bottom: 0px;
 }
 
+.ltt-travail-label {
+  width: 100px;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.ltt-travail-label-md {
+  font-size: 14px;
+}
+
 .ltt-travail-sm {
   width: 87px;
 }
+/* INUTILISE
 .ltt-travail-label, .ltt-laser-label  {
-/*outline: none;*/
 width: 100px;
 margin-top: 5px;
 margin-bottom: 3px;
 border:none;
 background-color:#11ffee00;
-/*color: darkgray;*/
 font-size: medium;
-}
+}*/
 
 .ltt-travail-radio {
 /*max-width: 100px;

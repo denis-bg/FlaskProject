@@ -10,7 +10,45 @@
     {{ fontawesome_css() }}
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+    <!--form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form-->
+    <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#loginModal">Connexion</button>
+  </div>
+</nav>
+
+<!--nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,12 +67,59 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav-->
 
 <div class="container-fluid">
     {% block content %}
     {% endblock %}
 </div>
+
+<div class="modal" id="loginModal">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">Connexion</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+       <!-- Modal Header -->
+       <div class="modal-body">
+          <form method="post" action='/login/' name="login_form">
+            <p><input type="text" name="eid" id="email" placeholder="Email"></p>
+            <p><input type="password" name="passwd" placeholder="Mot de passe"></p>
+            <p><button type="submit" class="btn btn-primary">Connexion</button></p>
+          </form>
+       </div>
+       <!-- Modal footer -->
+       <div class="modal-footer">
+          <p><a href="#">Mot de passe oublié ?</a> | <a href="#">Nouvel utilisateur ?</a></p>
+          <!--Nouvel utilisateur ?
+          <a href="#" class="btn btn-primary">Register</a-->
+       </div>
+    </div>
+ </div>
+</div>
+
+
+<div class="modal hide" id="NologinModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Login to MyWebsite.com</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" action='/login/' name="login_form">
+      <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
+      <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
+      <p><button type="submit" class="btn btn-primary">Sign in</button>
+        <a href="#">Forgot Password?</a>
+      </p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    New To MyWebsite.com?
+    <a href="#" class="btn btn-primary">Register</a>
+  </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
